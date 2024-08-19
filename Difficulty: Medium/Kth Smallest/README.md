@@ -1,3 +1,4 @@
+# Another Approach Also using Priority Queue + Max Heap
 <h2><a href="https://www.geeksforgeeks.org/problems/kth-smallest-element5635/1">Kth Smallest</a></h2><h3>Difficulty Level : Difficulty: Medium</h3><hr><div class="problems_problem_content__Xm_eO"><p><span style="font-size: 12pt;">Given an array <strong>arr[]</strong> and an integer&nbsp;<strong>k</strong> where k is smaller than the size of the array, the task is to find the <strong>k<sup>th</sup> smallest</strong> element in the given array. It is given that all array elements are distinct.</span></p>
 <p><span style="font-size: 12pt;"><strong>Follow up:</strong> Don't solve it using the inbuilt sort function.</span></p>
 <p><span style="font-size: 12pt;"><strong>Examples :</strong></span></p>
