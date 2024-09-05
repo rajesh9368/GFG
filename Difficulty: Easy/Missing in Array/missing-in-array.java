@@ -27,16 +27,14 @@ class GFG {
 
 // User function Template for Java
 class Solution {
-
     // Note that the size of the array is n-1
     int missingNumber(int n, int nums[]) {
         // Your Code Here
-        int sum1 = n*(n+1)/2;
-        int sum = 0;
-        for(int i=0;i<n-1;i++){
-            sum = sum+nums[i];
+        int s1=n*(n+1)/2;
+        int s2=0;
+        for(int i=0;i<nums.length;i++){
+            s2+=nums[i];
         }
-        if(sum1 == sum) return 0;
-        return sum1 - sum;
+        return s1-s2;
     }
 }
