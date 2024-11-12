@@ -10,26 +10,16 @@ import java.util.*;
 
 class Solution {
     public boolean checkDuplicatesWithinK(int[] arr, int k) {
-       
-      HashMap<Integer,Integer> h=new HashMap<>();
-      
-       for(int i=0;i<arr.length;i++)
-       {
-          if(h.containsKey(arr[i]))
-          {
-            int a=i-h.get(arr[i]);
-            if(a<=k)
-            {
-                return true;
+        // your code
+        int n = arr.length;
+        for(int i=0;i<n;i++){
+            for(int j=i+1;j<n;j++){
+                if(arr[i]==arr[j]){
+                    if(j-i<=k) return true;
+                }
             }
-            
-          }
-          else
-          {
-            h.put(arr[i],i); 
-          }
-       }
-       return false;
+        }
+        return false;
     }
 }
 
