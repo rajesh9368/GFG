@@ -120,6 +120,7 @@ class Solution {
         if (root.right != null) addleaf(root.right, arr);
     }
 
+
     void addright(Node node, ArrayList<Integer> arr) {
         Node curr = node.right;
         ArrayList<Integer> temp = new ArrayList<>();
