@@ -41,13 +41,27 @@ class GFG {
             head = ob.reverseList(head);
             printList(head);
             t--;
-        
-System.out.println("~");
-}
+
+            System.out.println("~");
+        }
     }
 }
 
 // } Driver Code Ends
+
+
+// function Template for Java
+
+/* linked list node class:
+
+class Node {
+    int data;
+    Node next;
+    Node(int value) {
+        this.value = value;
+    }
+}
+
 
 
 // function Template for Java
