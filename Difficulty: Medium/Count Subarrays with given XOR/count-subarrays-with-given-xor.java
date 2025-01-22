@@ -26,6 +26,8 @@ public class Main {
 
 
 // class Solution {
+//two approaches 
+/*Brute approach and hash map approach*/
 //     public long subarrayXor(int arr[], int k) {
 //         // code here
 //         int n = arr.length;
