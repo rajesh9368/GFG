@@ -1,69 +1,39 @@
 //{ Driver Code Starts
-//Initial Template for Java
-
+// Initial Template for Java
 import java.io.*;
 import java.util.*;
+import java.util.stream.Collectors;
 
-class FastReader{ 
-    BufferedReader br; 
-    StringTokenizer st; 
+public class Main {
 
-    public FastReader(){ 
-        br = new BufferedReader(new InputStreamReader(System.in)); 
-    } 
-
-    String next(){ 
-        while (st == null || !st.hasMoreElements()){ 
-            try{ st = new StringTokenizer(br.readLine()); } catch (IOException  e){ e.printStackTrace(); } 
-        } 
-        return st.nextToken(); 
-    } 
-
-    String nextLine(){ 
-        String str = ""; 
-        try{ str = br.readLine(); } catch (IOException e) { e.printStackTrace(); } 
-        return str; 
-    } 
-    
-    Integer nextInt(){
-        return Integer.parseInt(next());
-    }
-} 
-    
-class GFG {
-    public static void main(String args[]) throws IOException {
-        FastReader sc = new FastReader();
-        PrintWriter out = new PrintWriter(System.out);
-        int t = sc.nextInt();
+    public static void main(String[] args) throws Exception {
+        Scanner sc = new Scanner(System.in);
+        int t = Integer.parseInt(sc.nextLine());
         while (t-- > 0) {
+            String[] arr1Str = sc.nextLine().split(" ");
+            int[] arr = Arrays.stream(arr1Str).mapToInt(Integer::parseInt).toArray();
             Solution ob = new Solution();
-            int N = sc.nextInt(), Arr[] = new int[N];
-    	    for(int i = 0;i<N;i++){
-    	        Arr[i] = sc.nextInt();
-    	    }
-    	    
-    	    // element whose frequency to be find
-    	    int X = sc.nextInt();
-    	    out.println(ob.findFrequency(Arr, X));
+            int x = Integer.parseInt(sc.nextLine());
+            int ans = ob.findFrequency(arr, x);
+            System.out.println(ans);
+
+            System.out.println("~");
         }
-        out.flush();
     }
 }
-
 // } Driver Code Ends
 
 
-//User function Template for Java
+// User function Template for Java
+
 class Solution {
-    int findFrequency(int Arr[], int X) {
-        HashMap<Integer, Integer> mp = new HashMap<>();
-        for (int i = 0; i < Arr.length; i++) {
-            if (mp.containsKey(Arr[i])) mp.put(Arr[i], mp.get(Arr[i]) + 1);
-            else  mp.put(Arr[i], 1);
+    int findFrequency(int arr[], int x) {
+        // code here
+        int n = arr.length;
+        int cnt=0;
+        for(int i=0;i<n;i++){
+            if(arr[i]==x) cnt++;
         }
-        for (Map.Entry<Integer, Integer> entry : mp.entrySet()) {
-            if (entry.getKey() == X) return entry.getValue();
-        }
-        return 0;
+        return cnt;
     }
 }
