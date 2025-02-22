@@ -42,15 +42,17 @@ public class Main {
 // User function Template for Java
 class Solution {
     public int countSubarrays(int arr[], int k) {
+        // code here
         int n = arr.length;
-        int sum = 0, cnt = 0;
-        HashMap<Integer, Integer> mp = new HashMap<>();
-        for (int i = 0; i < n; i++) {
-            sum += arr[i];
-            if (sum == k) cnt++;
-            if (mp.containsKey(sum - k)) cnt += mp.get(sum - k);
-            mp.put(sum, mp.getOrDefault(sum, 0) + 1);
+        int cnt=0;
+        int sum=0;
+        HashMap<Integer,Integer> mp = new HashMap<>();
+        for(int i=0;i<n;i++){
+            sum+=arr[i];
+            if(sum==k) cnt++;
+            if(mp.containsKey(sum-k)) cnt+=mp.get(sum-k);
+            mp.put(sum,mp.getOrDefault(sum,0)+1);
         }
-            return cnt;
+        return cnt;
     }
 }
