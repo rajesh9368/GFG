@@ -29,16 +29,18 @@ public class Main {
 class Solution {
     public int getSecondLargest(int[] arr) {
         // Code Here
-         int n=arr.length,sl=0;
-        Arrays.sort(arr);
-        for(int i=2;i<=n;i++)
-        {
-            if(arr[n-1]!=arr[n-i])
-            {
-                sl=arr[n-i];
-                return sl;
+        int n = arr.length;
+        int largest=-1;
+        int secondlargest = -1;
+        for(int i=0;i<n;i++){
+            if(arr[i]>largest){
+                secondlargest = largest;
+                largest=arr[i];
+            }
+            if(arr[i]>secondlargest && arr[i]!=largest){
+                secondlargest=arr[i];
             }
         }
-        return -1;
+        return secondlargest;
     }
 }
