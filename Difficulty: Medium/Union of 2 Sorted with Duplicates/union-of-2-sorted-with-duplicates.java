@@ -50,10 +50,31 @@ class Solution {
     // Function to return a list containing the union of the two arrays.
     public static ArrayList<Integer> findUnion(int a[], int b[]) {
         // add your code here
-        TreeSet<Integer> st = new TreeSet<>();
-        int n = a.length,m=b.length;
-        for(int i=0;i<n;i++) st.add(a[i]);
-        for(int i=0;i<m;i++) st.add(b[i]);
-        return new ArrayList<>(st);
+        int n=a.length,m=b.length;
+        int i=0,j=0;
+        ArrayList<Integer> arr = new ArrayList<>();
+        while(i<n && j<m){
+            if(a[i]<=b[j]){
+                if(arr.size()==0 || arr.get(arr.size()-1)!=a[i])
+                arr.add(a[i]);
+                i++;
+            }
+            else{
+               if(arr.size()==0 || arr.get(arr.size()-1)!=b[j])
+                arr.add(b[j]);
+                j++;
+            }
+        }
+        while(i<n){
+            if(arr.size()==0 ||arr.get(arr.size()-1)!=a[i])
+            arr.add(a[i]);
+            i++;
+        }
+        while(j<m){
+            if(arr.size()==0 || arr.get(arr.size()-1)!=b[j])
+            arr.add(b[j]);
+            j++;
+        }
+        return arr;
     }
 }
