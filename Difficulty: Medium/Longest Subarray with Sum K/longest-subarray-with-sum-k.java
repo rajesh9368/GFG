@@ -30,30 +30,22 @@ class Main {
 
 
 // User function Template for Java
+
 class Solution {
     public int longestSubarray(int[] arr, int k) {
+        // code here
         int n = arr.length;
-        int maxLength = 0;
-        int cumulativeSum = 0;
-        HashMap<Integer, Integer> map = new HashMap<>();
-        
-        // Store the base case: sum 0 occurs at index -1
-        map.put(0, -1);
-        
-        for (int i = 0; i < n; i++) {
-            cumulativeSum += arr[i];
-
-            // If (cumulativeSum - k) exists, check the length of the subarray
-            if (map.containsKey(cumulativeSum - k)) {
-                maxLength = Math.max(maxLength, i - map.get(cumulativeSum - k));
+        int maxi=0;
+        HashMap<Integer,Integer> mp = new HashMap<>();
+        mp.put(0,-1);
+        int sum=0;
+        for(int i=0;i<n;i++){
+            sum+=arr[i];
+            if(mp.containsKey(sum-k)){
+                maxi = Math.max(maxi,i-mp.get(sum-k));
             }
-
-            // Store the first occurrence of the cumulative sum
-            map.putIfAbsent(cumulativeSum, i);
+            if(!mp.containsKey(sum)) mp.put(sum,i);
         }
-
-        return maxLength;
+        return maxi;
     }
 }
-
-
