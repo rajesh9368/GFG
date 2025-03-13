@@ -1,66 +1,45 @@
 //{ Driver Code Starts
-import java.io.*;
-import java.util.*;
+import java.io.BufferedReader;
+import java.io.IOException;
+import java.io.InputStreamReader;
 
-class gfg {
-    public static void main(String[] args) throws Exception {
+public class GFG {
+    public static void main(String[] args) throws IOException {
         BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
-        int t = Integer.parseInt(br.readLine());
+        int testCases = Integer.parseInt(br.readLine());
 
-        while (t-- > 0) {
-            int w = Integer.parseInt(br.readLine());
+        while (testCases-- > 0) {
+            int capacity = Integer.parseInt(br.readLine());
+            String[] valInput = br.readLine().split(" ");
+            String[] wtInput = br.readLine().split(" ");
 
-            String line = br.readLine();
-            String[] tokens = line.split(" ");
-            List<Integer> array = new ArrayList<>();
+            int[] val = new int[valInput.length];
+            int[] wt = new int[wtInput.length];
 
-            // Parse the tokens into integers and add to the array
-            for (String token : tokens) {
-                array.add(Integer.parseInt(token));
+            for (int i = 0; i < valInput.length; i++) {
+                val[i] = Integer.parseInt(valInput[i]);
             }
 
-            int[] val = new int[array.size()];
-            int idx = 0;
-            for (int i : array) val[idx++] = i;
-
-            String lin = br.readLine();
-            String[] toke = lin.split(" ");
-            List<Integer> array1 = new ArrayList<>();
-
-            // Parse the tokens into integers and add to the array
-            for (String token : toke) {
-                array1.add(Integer.parseInt(token));
+            for (int i = 0; i < wtInput.length; i++) {
+                wt[i] = Integer.parseInt(wtInput[i]);
             }
 
-            int[] wt = new int[array1.size()];
-            idx = 0;
-            for (int i : array1) wt[idx++] = i;
-
-            // calling method knapSack() of class Solution
-            System.out.println(new Solution().knapSack(w, wt, val));
+            System.out.println(Solution.knapsack(capacity, val, wt));
+            System.out.println("~");
         }
     }
 }
+
 // } Driver Code Ends
 
 
 class Solution {
-    static int solve(int wt[], int val[], int w, int i) {
-        if (i == 0) {
-            if (wt[0] <= w) {
-                return val[0];
-            }
-            return 0;
-        }
-        int nottake = solve(wt, val, w, i - 1);
-        int take = Integer.MIN_VALUE;
-        if (wt[i] <= w) {
-            take = val[i] + solve(wt, val, w - wt[i], i - 1);
-        }
-        return Math.max(nottake, take);
-    }
-    static int knapSack(int W, int wt[], int val[]) {
-        int n = wt.length;
-        return solve(wt, val, W, n - 1);
+    static int knapsack(int W, int val[], int wt[]) {
+        // code here
+          int dp[]=new int[W+1];
+        for(int i=0;i<val.length;i++)
+            for(int w=W;w>=wt[i];w--)
+                dp[w]=Math.max(dp[w],val[i]+dp[w-wt[i]]);
+        return dp[W];
     }
 }
