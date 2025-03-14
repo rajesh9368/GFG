@@ -30,17 +30,16 @@ class Solution {
     public int getSecondLargest(int[] arr) {
         // Code Here
         int n = arr.length;
-        int largest=-1;
-        int secondlargest = -1;
+        int largest = -1;
+        int second_largest = -1;
         for(int i=0;i<n;i++){
             if(arr[i]>largest){
-                secondlargest = largest;
-                largest=arr[i];
+                second_largest = largest;
+                largest = arr[i];
             }
-            if(arr[i]>secondlargest && arr[i]!=largest){
-                secondlargest=arr[i];
-            }
+            if(arr[i]!=largest && arr[i]>second_largest)
+                second_largest = arr[i];
         }
-        return secondlargest;
+        return second_largest;
     }
 }
