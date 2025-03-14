@@ -54,12 +54,10 @@ class Solution {
     public static int largest(int[] arr) {
         // code here
         int n = arr.length;
-        int largest = arr[0];
+        int maxi = Integer.MIN_VALUE;
         for(int i=0;i<n;i++){
-            if(arr[i]>=largest){
-                largest=arr[i];
-            }
+            if(arr[i]>maxi) maxi = arr[i];
         }
-        return largest;
+        return maxi;
     }
 }
