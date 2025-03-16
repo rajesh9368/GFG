@@ -25,36 +25,20 @@ public class Main {
 // } Driver Code Ends
 
 
-// class Solution {
-//two approaches 
-/*Brute approach and hash map approach*/
-//     public long subarrayXor(int arr[], int k) {
-//         // code here
-//         int n = arr.length;
-//         long cnt=0;
-//         for(int i=0;i<n;i++){
-//             int xor=0;
-//             for(int j=i;j<n;j++){
-//                 xor=xor^arr[j];
-//                 if(xor==k) cnt++;
-//             }
-//         }
-//         return cnt;
-//     }
-// } tle
 class Solution {
     public long subarrayXor(int arr[], int k) {
-        HashMap<Integer, Integer> map = new HashMap<>();
-        map.put(0, 1);
-        int XOR = 0;
-        int ans = 0;
-        for(int i : arr){
-            XOR ^= i;
-            if(map.containsKey(XOR^k)){
-                ans += map.get(XOR^k);
-            }
-            map.put(XOR, map.getOrDefault(XOR, 0)+1);
+        // code here
+        // we know that the xor of the number is itself zero
+        int n = arr.length;
+        HashMap<Integer,Integer> mp = new HashMap<>();
+        mp.put(0,1);
+        int xor=0;
+        int cnt=0;
+        for(int i=0;i<n;i++){
+            xor=xor^arr[i];
+            if(mp.containsKey(xor^k)) cnt+=mp.get(xor^k);
+            mp.put(xor,mp.getOrDefault(xor,0)+1);
         }
-        return ans;
+        return cnt;
     }
 }
