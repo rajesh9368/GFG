@@ -25,27 +25,16 @@ class Geeks {
 
 
 class Solution {
-    //two approaches
-    /*Using brute
-    other using map*/
     int maxLen(int arr[]) {
         // code here
-        int maxi=0;
         int n = arr.length;
-        int sum=0;
-        // for(int i=0;i<n;i++){
-        //     int csum=0;
-        //     for(int j=i;j<n;j++){
-        //         csum+=arr[j];
-        //         if(csum==0) maxi=Math.max(maxi,j-i+1);
-        //     }
-        // }
-        // return maxi;
         HashMap<Integer,Integer> mp = new HashMap<>();
+        int maxi = 0;
         mp.put(0,-1);
+        int sum=0;
         for(int i=0;i<n;i++){
             sum+=arr[i];
-            if(mp.containsKey(sum)) maxi=Math.max(maxi,i-mp.get(sum));
+            if(mp.containsKey(sum)) maxi = Math.max(maxi,i-mp.get(sum));
             else mp.put(sum,i);
         }
         return maxi;
