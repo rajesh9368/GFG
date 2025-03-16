@@ -35,14 +35,14 @@ class Solution {
     public int longestSubarray(int[] arr, int k) {
         // code here
         int n = arr.length;
+        int maxi=0;
         HashMap<Integer,Integer> mp = new HashMap<>();
-        int maxi = 0;
         mp.put(0,-1);
-        int sum=0;
+        int currsum=0;
         for(int i=0;i<n;i++){
-            sum+=arr[i];
-            if(mp.containsKey(sum-k)) maxi=Math.max(maxi,i-mp.get(sum-k));
-            if(!mp.containsKey(sum)) mp.put(sum,i);
+            currsum+=arr[i];
+            if(mp.containsKey(currsum - k)) maxi = Math.max(maxi,i-mp.get(currsum-k));
+            if(!mp.containsKey(currsum)) mp.put(currsum,i);
         }
         return maxi;
     }
