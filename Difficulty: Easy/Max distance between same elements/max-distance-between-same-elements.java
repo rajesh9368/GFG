@@ -4,30 +4,21 @@ import java.util.Scanner;
 
 
 // } Driver Code Ends
+
 class Solution {
-    //two approaches brute+map
     public int maxDistance(int[] arr) {
         // Code here
-        int n = arr.length;
         int maxi=0;
-        // for(int i=0;i<n;i++){
-        //     for(int j=0;j<n;j++){
-        //         if(i!=j){
-        //             if(arr[i]==arr[j]){
-        //                 maxi=Math.max(j-i,maxi);
-        //             }
-        //         }
-        //     }
-        // }
-        // return maxi;
+        int n = arr.length;
         HashMap<Integer,Integer> mp = new HashMap<>();
         for(int i=0;i<n;i++){
-            if(mp.containsKey(arr[i])) maxi=Math.max(maxi,i-mp.get(arr[i]));
+            if(mp.containsKey(arr[i])) maxi = Math.max(maxi,i-mp.get(arr[i]));
             else mp.put(arr[i],i);
         }
         return maxi;
     }
 }
+
 
 //{ Driver Code Starts.
 public class Main {
