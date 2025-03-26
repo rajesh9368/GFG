@@ -123,8 +123,8 @@ class Solution
 {
     //Function to return a list containing the bottom view of the given tree.
     static class Pair{
-        int line;
         Node node;
+        int line;
         Pair(Node node,int line){
             this.node=node;
             this.line=line;
@@ -137,16 +137,16 @@ class Solution
         if(root==null) return arr;
         TreeMap<Integer,Integer> mp = new TreeMap<>();
         Queue<Pair> que = new LinkedList<>();
-        que.add(new Pair(root,0));
+        que.offer(new Pair(root,0));
         while(!que.isEmpty()){
             Pair curr = que.remove();
             int line = curr.line;
             Node temp = curr.node;
             mp.put(line,temp.data);
-            if(temp.left!=null) que.add(new Pair(temp.left,line-1));
-            if(temp.right!=null) que.add(new Pair(temp.right,line+1));
+            if(temp.left!=null) que.offer(new Pair(temp.left,line-1));
+            if(temp.right!=null) que.offer(new Pair(temp.right,line+1));
         }
-        for(Map.Entry<Integer,Integer> st : mp.entrySet()) arr.add(st.getValue());
+        for(Map.Entry<Integer,Integer> i: mp.entrySet()) arr.add(i.getValue());
         return arr;
     }
 }
