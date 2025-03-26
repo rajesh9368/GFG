@@ -76,6 +76,8 @@ class GFG {
             for (Integer num : res) System.out.print(num + " ");
             System.out.println();
             t--;
+
+            System.out.println("~");
         }
     }
 }
@@ -84,63 +86,59 @@ class GFG {
 
 
 // User function Template for Java
+/*
+class Node
+{
+    int data;
+    Node left, right;
 
-// class Node
-// {
-//     int data;
-//     Node left, right;
-
-//     public Node(int d)
-//     {
-//         data = d;
-//         left = right = null;
-//     }
-// }
-
-class Solution {
-    boolean isleaf(Node node) {
-        return node.left == null && node.right == null;
-    }
-
-    void addleft(Node node, ArrayList<Integer> arr) {
-        Node curr = node.left;
-        while (curr != null) {
-            if (!isleaf(curr)) arr.add(curr.data);
-            if (curr.left != null) curr = curr.left;
-            else curr = curr.right;
-        }
-    }
-
-    void addleaf(Node root, ArrayList<Integer> arr) {
-        if (isleaf(root)) {
-            arr.add(root.data);
-            return;
-        }
-        if (root.left != null) addleaf(root.left, arr);
-        if (root.right != null) addleaf(root.right, arr);
-    }
-
-
-    void addright(Node node, ArrayList<Integer> arr) {
-        Node curr = node.right;
-        ArrayList<Integer> temp = new ArrayList<>();
-        while (curr != null) {
-            if (!isleaf(curr)) temp.add(curr.data);
-            if (curr.right != null) curr = curr.right;
-            else curr = curr.left;
-        }
-        for (int i = temp.size() - 1; i >= 0; i--) arr.add(temp.get(i));
-    }
-
-    ArrayList<Integer> boundaryTraversal(Node node) {
-        ArrayList<Integer> arr = new ArrayList<>();
-        if (node == null) return arr;
-        if (!isleaf(node)) arr.add(node.data);
-        addleft(node, arr);
-        addleaf(node, arr);
-        addright(node, arr);
-
-        return arr;
+    public Node(int d)
+    {
+        data = d;
+        left = right = null;
     }
 }
+*/
 
+class Solution {
+    public boolean leafnode(Node node){
+        return node.left==null && node.right==null;
+    }
+    public void left(Node node,ArrayList<Integer> ans){
+        Node curr = node.left;
+        while(curr!=null){
+            if(!leafnode(curr)) ans.add(curr.data);
+            if(curr.left!=null) curr=curr.left;
+            else curr=curr.right;
+        }
+    }
+    public void boundary(Node node,ArrayList<Integer> ans){
+        Node curr = node;
+        if(leafnode(curr)){
+            ans.add(curr.data);
+            return;
+        }
+        if(curr.left!=null)boundary(curr.left,ans);
+        if(curr.right!=null)boundary(curr.right,ans);
+    }
+    public void right(Node node,ArrayList<Integer> ans){
+        Node curr = node.right;
+        ArrayList<Integer> temp = new ArrayList<>();
+        while(curr!=null){
+            if(!leafnode(curr)) temp.add(curr.data);
+            if(curr.right!=null) curr = curr.right;
+            else curr = curr.left;
+        }
+        for(int i=temp.size()-1;i>=0;i--) ans.add(temp.get(i));
+    }
+    ArrayList<Integer> boundaryTraversal(Node node) {
+        // code here
+        ArrayList<Integer> ans = new ArrayList<>();
+        if(node == null) return ans;
+        if(!leafnode(node)) ans.add(node.data);
+        left(node,ans);
+        boundary(node,ans);
+        right(node,ans);
+        return ans;
+    }
+}
