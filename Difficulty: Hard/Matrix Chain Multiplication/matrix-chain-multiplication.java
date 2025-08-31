@@ -1,41 +1,26 @@
-//{ Driver Code Starts
-import java.io.*;
-import java.util.*;
-
-class Geeks {
-    public static void main(String[] args) throws Exception {
-        BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
-        int t = Integer.parseInt(br.readLine());
-        for (int g = 0; g < t; g++) {
-            String[] str = (br.readLine()).trim().split(" ");
-            int arr[] = new int[str.length];
-            for (int i = 0; i < str.length; i++) {
-                arr[i] = Integer.parseInt(str[i]);
-            }
-            System.out.println(new Solution().matrixMultiplication(arr));
-            System.out.println("~");
-        }
-    }
-}
-// } Driver Code Ends
-
-
 class Solution {
+    static int function(int i,int j,int[] arr,int[][] dp){
+        if(i==j) return 0;
+        // int mini = 0;
+        int mini = Integer.MAX_VALUE;
+        if(dp[i][j]!=-1) return dp[i][j];
+        for(int k=i;k<j;k++){
+            int cost1 = function(i,k,arr,dp);
+            int cost2 = function(k+1,j,arr,dp);
+            int totalcost = arr[i-1]*arr[j]*arr[k]+cost1+cost2;
+            mini = Math.min(mini,totalcost);
+        }
+        return dp[i][j]=mini;
+    }
     static int matrixMultiplication(int arr[]) {
+        int n = arr.length;
         // code here
-         int n=arr.length;
-        int dp[][]=new int[n][n];
-        for(int i=0;i<n;i++)dp[i][i]=0;
-        for(int len=2;len<n;len++){
-            for(int i=1;i<n-len+1;i++){
-                int j=i+len-1;
-                dp[i][j]=Integer.MAX_VALUE;
-                for(int k=i;k<j;k++){
-                    int cost=dp[i][k]+dp[k+1][j]+arr[i-1]*arr[j]*arr[k];
-                    dp[i][j]=Math.min(dp[i][j],cost);
-                }
+        int[][] dp = new int[n][n];
+        for(int i=0;i<n;i++){
+            for(int j=0;j<n;j++){
+                dp[i][j]=-1;
             }
         }
-        return dp[1][n-1];
+        return function(1,n-1,arr,dp);
     }
 }
